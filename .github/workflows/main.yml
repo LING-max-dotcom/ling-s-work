@@ -1,0 +1,26 @@
+name: Daily APK Check
+
+on:
+  schedule:
+    # Runs at 20:00 UTC every day
+    - cron: '0 20 * * *'
+
+jobs:
+  check_apk_updates:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Check out repo
+      uses: actions/checkout@v2
+
+    - name: Set up Python 3.8
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.8'
+
+    - name: Install dependencies
+      run: |
+        pip install requests beautifulsoup4
+
+    - name: Run the script
+      run: python path/to/your/script.py
